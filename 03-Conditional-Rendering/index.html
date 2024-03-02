@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Conditional Rendering</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <h1 v-if="condition">{{message}}</h1>
+      <h1 v-else>Message is false</h1>
+
+      <h3 v-if="nilai >= 8">Predikat: A</h3>
+      <h3 v-else-if="nilai >= 7">Predikat: B</h3>
+      <h3 v-else>Predikat: C</h3>
+    </div>
+
+    <script type="module">
+      import { createApp, ref } from "https://unpkg.com/vue@3/dist/vue.esm-browser.js";
+
+      createApp({
+        data() {
+          return {
+            message: "Hello world",
+            condition: false,
+            nilai: 9,
+          };
+        },
+      }).mount("#app");
+    </script>
+  </body>
+</html>
