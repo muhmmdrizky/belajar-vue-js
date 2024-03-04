@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Looping</title>
+  </head>
+  <body>
+    <div id="app">
+      <ul v-for="(fruit, index) in fruits">
+        <li>{{ fruit }} {{ index }} <button @click="deleteData(penunjuk)">x</button></li>
+      </ul>
+      <ul v-for="(student, key, index) in students">
+        <li>{{ student.name }} - {{ student.address }}</li>
+      </ul>
+    </div>
+
+    <script type="module">
+      import { createApp, ref } from "https://unpkg.com/vue@3/dist/vue.esm-browser.js";
+
+      createApp({
+        data() {
+          return {
+            fruits: ["Mango", "Orange", "Guava", "Papaya"],
+            students: [
+              {
+                name: "Rony Parulian",
+                age: 22,
+                address: "Jakarta",
+              },
+              {
+                name: "Mohammad Ahsan",
+                age: 25,
+                address: "Palembang",
+              },
+              {
+                name: "Hendra Setiawan",
+                age: 23,
+                address: "Pemalang",
+              },
+            ],
+          };
+        },
+        methods: {
+          deleteData(index) {
+            this.fruits.splice(index, 1);
+          },
+        },
+      }).mount("#app");
+    </script>
+  </body>
+</html>
