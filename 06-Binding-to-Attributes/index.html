@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Binging to Attributes</title>
+    <style>
+      .username {
+        color: navy;
+      }
+    </style>
+  </head>
+  <body>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <div id="app">
+      <a :href="url">Dicoding</a>
+      <br />
+      <h2 :class="selectedClass">{{ user.name }}</h2>
+      <img :src="user.avatar" :style="{width: resoponsiveWidth}" :alt="'Image of ' + user.name" :title="'Image of ' + user.name" />
+    </div>
+
+    <script type="module">
+      import { createApp, ref } from "https://unpkg.com/vue@3/dist/vue.esm-browser.js";
+
+      createApp({
+        data() {
+          return {
+            url: "https://dicoding.com",
+            user: {
+              name: "Rojak",
+              avatar: "https://images.unsplash.com/photo-1600486913747-55e5470d6f40?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            },
+            resoponsiveWidth: "300px",
+            selectedClass: "username",
+          };
+        },
+      }).mount("#app");
+    </script>
+  </body>
+</html>
