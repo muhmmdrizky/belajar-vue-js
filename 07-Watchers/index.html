@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reactive Error Message pada Form</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <div id="app">
+      <div class="container mt-40">
+        <form class="max-w-sm mx-auto" @submit.prevent="">
+          <div class="mb-5">
+            <label for="username" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Username</label>
+            <input
+              type="text"
+              id="username"
+              v-model="username"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            />
+            <label for="username" v-if="usernameError" class="mt-2 text-xs text-red-600 dark:text-red-400 font-semibold">Username minimum 8 characters</label>
+          </div>
+          <div class="mb-5">
+            <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
+            <input
+              type="password"
+              id="password"
+              v-model="password"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            />
+            <label for="password" v-if="passwordError" class="mt-2 text-xs text-red-600 dark:text-red-400 font-semibold">Password minimum 8 characters</label>
+          </div>
+          <div class="mb-5">
+            <label for="repeatPassword" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
+            <input
+              type="password"
+              id="repeatPassword"
+              v-model="repeatPassword"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            />
+            <label for="repeatPassword" v-if="repeatPasswordError" class="mt-2 text-xs text-red-600 dark:text-red-400 font-semibold">Password doesn't match.</label>
+          </div>
+
+          <button
+            type="submit"
+            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          >
+            Submit
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <script type="module">
+      import { createApp, ref } from "https://unpkg.com/vue@3/dist/vue.esm-browser.js";
+
+      createApp({
+        data() {
+          return {
+            username: "",
+            password: "",
+            repeatPassword: "",
+            usernameError: false,
+            passwordError: false,
+            repeatPasswordError: false,
+          };
+        },
+        watch: {
+          username(value) {
+            if (value.length < 8) {
+              this.usernameError = true;
+            } else {
+              this.usernameError = false;
+            }
+          },
+          password(value) {
+            if (value.length < 8) {
+              this.passwordError = true;
+            } else {
+              this.passwordError = false;
+            }
+          },
+          repeatPassword(value) {
+            if (value != this.password) {
+              this.repeatPasswordError = true;
+            } else {
+              this.repeatPasswordError = false;
+            }
+          },
+        },
+      }).mount("#app");
+    </script>
+  </body>
+</html>
